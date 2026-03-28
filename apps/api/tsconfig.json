@@ -7,7 +7,9 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "strictNullChecks": true,
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
   },
   "exclude": [
     "node_modules"

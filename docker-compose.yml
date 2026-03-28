@@ -1,0 +1,56 @@
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - app_network
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+  web-react:
+    container_name: web-react
+    build:
+      context: .
+      dockerfile: ./apps/web-react/Dockerfile
+    restart: always
+    ports:
+      - 3001:80
+    networks:
+      - app_network
+  db:
+    platform: linux/amd64
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=sebi
+      - POSTGRES_PASSWORD=sebi_test_4444
+      - POSTGRES_DB=turborepo
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  app_network:
+    external: true
+    driver: bridge
