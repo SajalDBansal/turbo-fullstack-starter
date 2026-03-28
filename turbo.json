@@ -13,7 +13,11 @@
       "outputs": [
         "dist/**",
         ".next/**",
-        "!.next/cache/**"
+        "!.next/cache/**",
+        "public/dist/**"
+      ],
+      "env": [
+        "NEXT_PUBLIC_API_HOST"
       ]
     },
     "db:migrate:dev": {
@@ -35,9 +39,16 @@
       ],
       "cache": false
     },
+    "test": {
+      "outputs": [
+        "coverage/**"
+      ],
+      "dependsOn": []
+    },
     "lint": {
       "dependsOn": [
-        "^lint"
+        "^lint",
+        "^build"
       ]
     },
     "check-types": {
@@ -48,6 +59,9 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "clean": {
+      "cache": false
     }
   }
 }
