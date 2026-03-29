@@ -100,7 +100,7 @@ docker network create app_network
 From the repository root:
 
 ```bash
-docker compose build
+docker-compose -f docker-compose.yml build
 ```
 
 Build a single service:

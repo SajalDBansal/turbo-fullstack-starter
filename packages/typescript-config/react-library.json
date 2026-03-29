@@ -2,7 +2,13 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": false,
-  }
+    "lib": [
+      "ES2015"
+    ],
+    "target": "ES6",
+    "jsx": "react-jsx"
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
