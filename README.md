@@ -95,6 +95,14 @@ The compose file builds **three Node services** (API, Next.js, static React via 
 docker network create app_network
 ```
 
+### One-time: create the external volume
+
+`docker-compose.yml` declares `postgres_data_turbo` as **external**. Create it once:
+
+```bash
+docker network create postgres_data_turbo
+```
+
 ### Build images
 
 From the repository root:

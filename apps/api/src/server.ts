@@ -2,6 +2,10 @@ import { json, urlencoded } from "body-parser";
 import express, { type Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
+import { configDotenv } from "dotenv";
+
+configDotenv({ path: "../../.env" });
+configDotenv(); // local override
 
 export const createServer = (): Express => {
   const app = express();
