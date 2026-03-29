@@ -1,8 +1,17 @@
-import "./globals.css";
+import "@repo/ui/globals.css"
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@repo/ui/lib/utils";
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geist = Geist({ subsets: ["latin"] });
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+})
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -15,8 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={geist.className}>{children}</body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+    >
+      <body className={geist.className}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
